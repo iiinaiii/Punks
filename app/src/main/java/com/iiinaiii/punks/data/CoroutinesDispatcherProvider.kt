@@ -1,4 +1,4 @@
-package com.iiinaiii.breweries.data
+package com.iiinaiii.punks.data
 
 import kotlinx.coroutines.CoroutineDispatcher
 

@@ -1,6 +1,6 @@
-package com.iiinaiii.breweries.util
+package com.iiinaiii.punks.util
 
-import com.iiinaiii.breweries.breweries.data.Result
+import com.iiinaiii.punks.punkapi.data.Result
 import java.io.IOException
 
 /**

@@ -1,27 +1,25 @@
-package com.iiinaiii.breweries.breweries.data.search
+package com.iiinaiii.punks.punkapi.data.search
 
-import com.iiinaiii.breweries.breweries.data.Result
-import com.iiinaiii.breweries.breweries.data.api.model.Brewery
-import com.iiinaiii.breweries.util.safeApiCall
+import com.iiinaiii.punks.punkapi.data.Result
+import com.iiinaiii.punks.punkapi.data.api.model.Beer
+import com.iiinaiii.punks.util.safeApiCall
 import java.io.IOException
 import javax.inject.Inject
 
-class SearchRemoteDataSource @Inject constructor(private val service: BreweriesSearchService) {
+class SearchRemoteDataSource @Inject constructor(private val service: BeersSearchService) {
 
     suspend fun search(
-        state: String,
         page: Int
-    ): Result<List<Brewery>> = safeApiCall(
-        call = { requestSearch(state, page) },
+    ): Result<List<Beer>> = safeApiCall(
+        call = { requestSearch(page) },
         errorMessage = "Error getting Breweries data"
     )
 
     private suspend fun requestSearch(
-        state: String,
         page: Int
-    ): Result<List<Brewery>> {
+    ): Result<List<Beer>> {
         Result
-        val response = service.searchByState(state, page).await()
+        val response = service.search(page).await()
         if (response.isSuccessful) {
             val body = response.body()
             if (body != null) {
@@ -29,7 +27,7 @@ class SearchRemoteDataSource @Inject constructor(private val service: BreweriesS
             }
         }
         return Result.Error(
-            IOException("Error getting Brewery data ${response.code()} ${response.message()}")
+            IOException("Error getting Beer data ${response.code()} ${response.message()}")
         )
     }
 
@@ -37,7 +35,7 @@ class SearchRemoteDataSource @Inject constructor(private val service: BreweriesS
         @Volatile
         private var INSTANCE: SearchRemoteDataSource? = null
 
-        fun getInstance(service: BreweriesSearchService): SearchRemoteDataSource {
+        fun getInstance(service: BeersSearchService): SearchRemoteDataSource {
             return INSTANCE ?: synchronized(this) {
                 INSTANCE ?: SearchRemoteDataSource(service).also { INSTANCE = it }
             }

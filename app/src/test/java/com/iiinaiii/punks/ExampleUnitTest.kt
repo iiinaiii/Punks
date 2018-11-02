@@ -1,4 +1,4 @@
-package com.iiinaiii.breweries
+package com.iiinaiii.punks
 
 import org.junit.Test
 

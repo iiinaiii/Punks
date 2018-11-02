@@ -19,7 +19,7 @@ buildscript {
             'retrofitCoroutines': '0.9.2'
     ]
     ext.names = [
-            'applicationId': 'com.iiinaiii.breweries'
+            'applicationId': 'com.iiinaiii.punks'
     ]
 
     repositories {

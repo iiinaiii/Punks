@@ -1,11 +1,10 @@
-package com.iiinaiii.breweries.dagger.breweries
+package com.iiinaiii.punks.dagger.punkapi
 
-import com.iiinaiii.breweries.BuildConfig
-import com.iiinaiii.breweries.breweries.data.BreweriesRepository
-import com.iiinaiii.breweries.breweries.data.search.BreweriesSearchService
-import com.iiinaiii.breweries.breweries.data.search.SearchRemoteDataSource
-import com.iiinaiii.breweries.dagger.CoroutinesDispatcherProviderModule
-import com.iiinaiii.breweries.data.CoroutinesDispatcherProvider
+import com.iiinaiii.punks.BuildConfig
+import com.iiinaiii.punks.punkapi.data.BeersRepository
+import com.iiinaiii.punks.punkapi.data.search.BeersSearchService
+import com.iiinaiii.punks.punkapi.data.search.SearchRemoteDataSource
+import com.iiinaiii.punks.dagger.CoroutinesDispatcherProviderModule
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -17,23 +16,22 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 /**
- * Dagger module providing classes required to breweries with data.
+ * Dagger module providing classes required to beers with data.
  */
 @Module(includes = [CoroutinesDispatcherProviderModule::class])
-class BreweriesDataModule {
+class BeersDataModule {
 
     @Provides
-    fun provideBreweriesRepository(
-        remoteDataSource: SearchRemoteDataSource,
-        dispatcherProvider: CoroutinesDispatcherProvider
-    ) = BreweriesRepository.getInstance(remoteDataSource, dispatcherProvider)
+    fun provideBeersRepository(
+        remoteDataSource: SearchRemoteDataSource
+    ) = BeersRepository.getInstance(remoteDataSource)
 
     @Provides
-    fun provideBreweriesSearchService(moshi: Moshi): BreweriesSearchService {
+    fun provideBeersSearchService(moshi: Moshi): BeersSearchService {
         return provideRetrofit(
-            BreweriesSearchService.ENDPOINT,
+            BeersSearchService.ENDPOINT,
             moshi
-        ).create(BreweriesSearchService::class.java)
+        ).create(BeersSearchService::class.java)
     }
 
     @Provides
@@ -51,7 +49,9 @@ class BreweriesDataModule {
 
     @Provides
     fun provideMoshi(): Moshi {
-        return Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+        return Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
     }
 
     @Provides

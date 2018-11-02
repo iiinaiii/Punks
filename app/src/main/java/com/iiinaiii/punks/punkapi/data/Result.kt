@@ -1,4 +1,4 @@
-package com.iiinaiii.breweries.breweries.data
+package com.iiinaiii.punks.punkapi.data
 
 /**
  * A generic class that holds a value with its loading status.
