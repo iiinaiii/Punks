@@ -1,7 +1,7 @@
 package com.iiinaiii.punks.ui.home
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.iiinaiii.punks.R
@@ -26,10 +26,18 @@ class HomeActivity : AppCompatActivity() {
 
         inject()
 
-        setupRecyclerView()
+        binding.setLifecycleOwner(this)
+        binding.viewModel = viewModel
 
-        viewModel.uiModel.observe(this, Observer { uiModel ->
-            updateBeers(uiModel.beers)
+        setupRecyclerView()
+        viewModel.uiModel.observe(this, Observer {
+            val uiModel = it ?: return@Observer
+
+            if (uiModel.showSuccess != null && !uiModel.showSuccess.consumed) {
+                uiModel.showSuccess.consume()?.let { beerResult ->
+                    updateBeers(beerResult.beers)
+                }
+            }
         })
         viewModel.loadBeers()
     }
