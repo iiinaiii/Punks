@@ -1,9 +1,9 @@
 package com.iiinaiii.punks.dagger
 
 import com.iiinaiii.punks.BuildConfig
-import com.iiinaiii.punks.data.beers.BeersRepository
 import com.iiinaiii.punks.data.api.BeersSearchService
 import com.iiinaiii.punks.data.beers.BeersRemoteDataSource
+import com.iiinaiii.punks.data.beers.BeersRepository
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

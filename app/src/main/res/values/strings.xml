@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Punks</string>
+  <string name="app_name">Punks</string>
+
+  <string name="beer_search_error">No beer data exists.</string>
 </resources>

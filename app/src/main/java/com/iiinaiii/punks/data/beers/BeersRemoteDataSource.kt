@@ -23,7 +23,7 @@ class BeersRemoteDataSource @Inject constructor(private val service: BeersSearch
         val response = service.search(page).await()
         if (response.isSuccessful) {
             val body = response.body()
-            if (body != null) {
+            if (body != null && body.isNotEmpty()) {
                 return Result.Success(body)
             }
         }

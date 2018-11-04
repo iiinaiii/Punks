@@ -4,10 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.iiinaiii.punks.R
 import com.iiinaiii.punks.dagger.inject
 import com.iiinaiii.punks.databinding.ActivityHomeBinding
 import com.iiinaiii.punks.domain.model.Beer
+import com.iiinaiii.punks.ui.InfiniteScrollListener
 import com.iiinaiii.punks.util.delegates.contentView
 import javax.inject.Inject
 
@@ -38,6 +40,12 @@ class HomeActivity : AppCompatActivity() {
                     updateBeers(beerResult.beers)
                 }
             }
+
+            if (uiModel.showError != null && !uiModel.showError.consumed) {
+                uiModel.showError.consume()?.let {
+                    showError()
+                }
+            }
         })
         viewModel.loadBeers()
     }
@@ -45,8 +53,14 @@ class HomeActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         beersAdapter = BeersAdapter(this)
         binding.homeRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this@HomeActivity)
+            val linearLayoutManager = LinearLayoutManager(this@HomeActivity)
+            layoutManager = linearLayoutManager
             adapter = beersAdapter
+            addOnScrollListener(object : InfiniteScrollListener(linearLayoutManager, viewModel) {
+                override fun onLoadMore() {
+                    viewModel.loadBeers()
+                }
+            })
         }
     }
 
@@ -55,5 +69,9 @@ class HomeActivity : AppCompatActivity() {
             it.beers.addAll(beers)
             it.notifyDataSetChanged()
         }
+    }
+
+    private fun showError() {
+        Snackbar.make(binding.root, R.string.beer_search_error, Snackbar.LENGTH_SHORT).show()
     }
 }

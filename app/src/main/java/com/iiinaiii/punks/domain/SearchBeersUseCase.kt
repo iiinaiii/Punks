@@ -1,8 +1,7 @@
 package com.iiinaiii.punks.domain
 
-import com.iiinaiii.punks.data.beers.BeersRepository
 import com.iiinaiii.punks.data.Result
-import com.iiinaiii.punks.data.beers.model.BeerResponse
+import com.iiinaiii.punks.data.beers.BeersRepository
 import com.iiinaiii.punks.data.beers.model.toBeer
 import com.iiinaiii.punks.domain.model.Beer
 import com.iiinaiii.punks.util.exhaustive
