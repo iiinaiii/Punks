@@ -1,4 +1,4 @@
-package com.iiinaiii.punks.punkapi.data
+package com.iiinaiii.punks.data
 
 /**
  * A generic class that holds a value with its loading status.

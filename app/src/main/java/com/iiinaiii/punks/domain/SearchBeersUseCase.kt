@@ -1,35 +1,25 @@
 package com.iiinaiii.punks.domain
 
-import com.iiinaiii.punks.punkapi.data.BeersRepository
-import com.iiinaiii.punks.punkapi.data.Result
-import com.iiinaiii.punks.punkapi.data.api.model.Beer
-import com.iiinaiii.punks.data.CoroutinesDispatcherProvider
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.iiinaiii.punks.data.beers.BeersRepository
+import com.iiinaiii.punks.data.Result
+import com.iiinaiii.punks.data.beers.model.BeerResponse
+import com.iiinaiii.punks.data.beers.model.toBeer
+import com.iiinaiii.punks.domain.model.Beer
+import com.iiinaiii.punks.util.exhaustive
 import javax.inject.Inject
 
 class SearchBeersUseCase @Inject constructor(
-    private val beersRepository: BeersRepository,
-    private val dispatcherProvider: CoroutinesDispatcherProvider
+    private val beersRepository: BeersRepository
 ) {
-    private var parentJob = Job()
-    private val scope = CoroutineScope(dispatcherProvider.main + parentJob)
 
-    private val parentJobs = mutableMapOf<String, Job>()
-
-    operator fun invoke(state: String, page: Int, onResult: (Result<List<Beer>>) -> Unit) {
-        val jobId = "$state::$page"
-        parentJobs[jobId] = launchRequest(page, onResult)
-    }
-
-    private fun launchRequest(
-        page: Int,
-        onResult: (Result<List<Beer>>) -> Unit
-    ) = scope.launch(dispatcherProvider.computation) {
+    suspend operator fun invoke(page: Int): Result<List<Beer>> {
         val result = beersRepository.search(page)
-        withContext(dispatcherProvider.main) { onResult(result) }
+        return when (result) {
+            is Result.Success -> {
+                Result.Success(result.data.map { it.toBeer() })
+            }
+            is Result.Error -> result
+        }.exhaustive
     }
 
 }

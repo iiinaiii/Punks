@@ -1,23 +1,24 @@
-package com.iiinaiii.punks.punkapi.data.search
+package com.iiinaiii.punks.data.beers
 
-import com.iiinaiii.punks.punkapi.data.Result
-import com.iiinaiii.punks.punkapi.data.api.model.Beer
+import com.iiinaiii.punks.data.Result
+import com.iiinaiii.punks.data.api.BeersSearchService
+import com.iiinaiii.punks.data.beers.model.BeerResponse
 import com.iiinaiii.punks.util.safeApiCall
 import java.io.IOException
 import javax.inject.Inject
 
-class SearchRemoteDataSource @Inject constructor(private val service: BeersSearchService) {
+class BeersRemoteDataSource @Inject constructor(private val service: BeersSearchService) {
 
     suspend fun search(
         page: Int
-    ): Result<List<Beer>> = safeApiCall(
+    ): Result<List<BeerResponse>> = safeApiCall(
         call = { requestSearch(page) },
         errorMessage = "Error getting Breweries data"
     )
 
     private suspend fun requestSearch(
         page: Int
-    ): Result<List<Beer>> {
+    ): Result<List<BeerResponse>> {
         Result
         val response = service.search(page).await()
         if (response.isSuccessful) {
@@ -27,17 +28,18 @@ class SearchRemoteDataSource @Inject constructor(private val service: BeersSearc
             }
         }
         return Result.Error(
-            IOException("Error getting Beer data ${response.code()} ${response.message()}")
+            IOException("Error getting BeerResponse data ${response.code()} ${response.message()}")
         )
     }
 
     companion object {
         @Volatile
-        private var INSTANCE: SearchRemoteDataSource? = null
+        private var INSTANCE: BeersRemoteDataSource? = null
 
-        fun getInstance(service: BeersSearchService): SearchRemoteDataSource {
+        fun getInstance(service: BeersSearchService): BeersRemoteDataSource {
             return INSTANCE ?: synchronized(this) {
-                INSTANCE ?: SearchRemoteDataSource(service).also { INSTANCE = it }
+                INSTANCE
+                    ?: BeersRemoteDataSource(service).also { INSTANCE = it }
             }
         }
     }

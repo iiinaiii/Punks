@@ -1,6 +1,6 @@
-package com.iiinaiii.punks.punkapi.data.search
+package com.iiinaiii.punks.data.api
 
-import com.iiinaiii.punks.punkapi.data.api.model.Beer
+import com.iiinaiii.punks.data.beers.model.BeerResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
@@ -11,10 +11,9 @@ interface BeersSearchService {
     @GET("")
     fun search(
         @Query("page") page: Int
-    ): Deferred<Response<List<Beer>>>
+    ): Deferred<Response<List<BeerResponse>>>
 
     companion object {
         const val ENDPOINT = "https://api.punkapi.com/v2/"
-        const val PER_PAGE_DEFAULT = 12
     }
 }

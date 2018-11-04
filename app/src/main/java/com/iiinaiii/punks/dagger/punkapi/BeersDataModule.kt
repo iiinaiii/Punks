@@ -1,9 +1,9 @@
 package com.iiinaiii.punks.dagger.punkapi
 
 import com.iiinaiii.punks.BuildConfig
-import com.iiinaiii.punks.punkapi.data.BeersRepository
-import com.iiinaiii.punks.punkapi.data.search.BeersSearchService
-import com.iiinaiii.punks.punkapi.data.search.SearchRemoteDataSource
+import com.iiinaiii.punks.data.beers.BeersRepository
+import com.iiinaiii.punks.data.api.BeersSearchService
+import com.iiinaiii.punks.data.beers.BeersRemoteDataSource
 import com.iiinaiii.punks.dagger.CoroutinesDispatcherProviderModule
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
@@ -23,7 +23,7 @@ class BeersDataModule {
 
     @Provides
     fun provideBeersRepository(
-        remoteDataSource: SearchRemoteDataSource
+        remoteDataSource: BeersRemoteDataSource
     ) = BeersRepository.getInstance(remoteDataSource)
 
     @Provides
