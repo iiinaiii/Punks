@@ -15,7 +15,7 @@ fun BeerResponse.toBeer() = Beer(
     id = id,
     name = name,
     tagline = tagline,
-    first_brewed = first_brewed,
+    firstBrewed = first_brewed,
     description = description,
-    image_url = image_url
+    imageUrl = image_url
 )

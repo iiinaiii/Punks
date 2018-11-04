@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface BeersSearchService {
 
-    @GET("")
+    @GET("beers")
     fun search(
         @Query("page") page: Int
     ): Deferred<Response<List<BeerResponse>>>

@@ -3,9 +3,9 @@ package com.iiinaiii.punks.data.beers
 import com.iiinaiii.punks.data.Result
 import com.iiinaiii.punks.data.beers.model.BeerResponse
 
-class BeersRepository constructor(private val remoteDataSource: BeersRemoteDataSource) {
+class BeersRepository(private val remoteDataSource: BeersRemoteDataSource) {
 
-    private val breweryCache = mutableMapOf<Int, BeerResponse>()
+    private val beerCache = mutableMapOf<Int, BeerResponse>()
 
     suspend fun search(
         page: Int
@@ -18,7 +18,7 @@ class BeersRepository constructor(private val remoteDataSource: BeersRemoteDataS
     }
 
     private fun cache(data: List<BeerResponse>) {
-        data.associateTo(breweryCache) { it.id to it }
+        data.associateTo(beerCache) { it.id to it }
     }
 
 
@@ -30,8 +30,7 @@ class BeersRepository constructor(private val remoteDataSource: BeersRemoteDataS
             remoteDataSource: BeersRemoteDataSource
         ): BeersRepository {
             return INSTANCE ?: synchronized(this) {
-                INSTANCE
-                    ?: BeersRepository(remoteDataSource).also { INSTANCE = it }
+                INSTANCE ?: BeersRepository(remoteDataSource).also { INSTANCE = it }
             }
         }
     }

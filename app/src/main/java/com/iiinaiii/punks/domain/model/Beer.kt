@@ -1,10 +1,17 @@
 package com.iiinaiii.punks.domain.model
 
+import com.iiinaiii.punks.ui.home.BeerItemUiModel
+
 data class Beer(
     val id: Int,
     val name: String,
     val tagline: String,
-    val first_brewed: String,
+    val firstBrewed: String,
     val description: String,
-    val image_url: String
+    val imageUrl: String
+)
+
+fun Beer.toItemUiModel() = BeerItemUiModel(
+    name = name,
+    imageUrl = imageUrl
 )
