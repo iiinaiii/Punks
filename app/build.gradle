@@ -51,6 +51,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
     implementation "com.squareup.moshi:moshi-kotlin:${versions.moshi}"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
+    implementation "com.jakewharton.threetenabp:threetenabp:${versions.threeten}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"

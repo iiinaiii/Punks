@@ -10,6 +10,8 @@ class BeerViewHolder(
 
     fun bind(model: BeerItemUiModel) {
         binding.beerName.text = model.name
+        binding.firstBrew.text = model.firstBrewed
+        binding.beerAbv.text = model.abv
 
         GlideApp.with(binding.root.context)
             .load(model.imageUrl)

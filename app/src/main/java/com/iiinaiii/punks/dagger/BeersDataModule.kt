@@ -4,6 +4,7 @@ import com.iiinaiii.punks.BuildConfig
 import com.iiinaiii.punks.data.api.BeersSearchService
 import com.iiinaiii.punks.data.beers.BeersRemoteDataSource
 import com.iiinaiii.punks.data.beers.BeersRepository
+import com.iiinaiii.punks.util.moshi.LocalDateTimeAdapter
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -55,6 +56,7 @@ class BeersDataModule {
     fun provideMoshi(): Moshi {
         return Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
+            .add(LocalDateTimeAdapter)
             .build()
     }
 

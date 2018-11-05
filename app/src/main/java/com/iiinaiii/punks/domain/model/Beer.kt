@@ -8,10 +8,13 @@ data class Beer(
     val tagline: String,
     val firstBrewed: String,
     val description: String,
-    val imageUrl: String
+    val imageUrl: String,
+    val abv: String
 )
 
 fun Beer.toItemUiModel() = BeerItemUiModel(
     name = name,
-    imageUrl = imageUrl
+    imageUrl = imageUrl,
+    firstBrewed = firstBrewed,
+    abv = abv
 )
