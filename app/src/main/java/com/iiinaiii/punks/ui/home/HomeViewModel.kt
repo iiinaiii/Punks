@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.iiinaiii.punks.data.CoroutinesDispatcherProvider
 import com.iiinaiii.punks.data.Result
 import com.iiinaiii.punks.domain.SearchBeersUseCase
-import com.iiinaiii.punks.domain.model.Beer
+import com.iiinaiii.punks.domain.model.toItemUiModels
 import com.iiinaiii.punks.util.DataLoadingSubject
 import com.iiinaiii.punks.util.event.Event
 import kotlinx.coroutines.CoroutineScope
@@ -19,15 +19,15 @@ class HomeViewModel(
     private val dispatcherProvider: CoroutinesDispatcherProvider
 ) : ViewModel(), DataLoadingSubject {
 
-    private val _uiModel = MutableLiveData<HomeUiModel>()
-    val uiModel: LiveData<HomeUiModel>
-        get() = _uiModel
-    override var isDataLoading = false
-    private var isLastPageLoaded = false
-
     private val parentJob = Job()
     private val scope = CoroutineScope(dispatcherProvider.main + parentJob)
 
+    private val _uiModel = MutableLiveData<HomeUiModel>()
+    val uiModel: LiveData<HomeUiModel>
+        get() = _uiModel
+
+    override var isDataLoading = false
+    private var isLastPageLoaded = false
     private var pageNum = 1
 
     fun loadBeers() {
@@ -45,7 +45,7 @@ class HomeViewModel(
         withContext(dispatcherProvider.main) {
             if (result is Result.Success) {
                 pageNum++
-                emitUiModel(showSuccess = Event(BeerResultUiModel(result.data)))
+                emitUiModel(showSuccess = Event(BeerResultUiModel(result.data.toItemUiModels())))
             } else {
                 emitUiModel(showError = Event(Unit))
                 isLastPageLoaded = true
@@ -63,7 +63,7 @@ class HomeViewModel(
         showSuccess: Event<BeerResultUiModel>? = null,
         showError: Event<Unit>? = null
     ) {
-        _uiModel.value = HomeUiModel(showProgress, showSuccess, showError)
+        _uiModel.postValue(HomeUiModel(showProgress, showSuccess, showError))
     }
 }
 
@@ -74,5 +74,5 @@ data class HomeUiModel(
 )
 
 data class BeerResultUiModel(
-    val beers: List<Beer>
+    val beers: List<BeerItemUiModel>
 )

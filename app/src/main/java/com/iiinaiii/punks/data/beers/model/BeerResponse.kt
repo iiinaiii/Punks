@@ -12,7 +12,7 @@ data class BeerResponse(
     val first_brewed: YearMonth,
     val description: String,
     val image_url: String,
-    val abv: Float,
+    val abv: Float?,
     val ibu: Float?,
     val target_fg: Float?,
     val target_og: Float?,
@@ -27,5 +27,12 @@ fun BeerResponse.toBeer() = Beer(
     firstBrewed = first_brewed.run { "${month.getDisplayName(TextStyle.FULL, Locale.US).toUpperCase()} $year" },
     description = description,
     imageUrl = image_url,
-    abv = "$abv%"
+    abv = "${abv.toStringOrDefault()}%",
+    ibu = ibu.toStringOrDefault(),
+    targetOg = target_og.toStringOrDefault(),
+    targetFg = target_fg.toStringOrDefault()
 )
+
+private fun Float?.toStringOrDefault(): String {
+    return this?.toString() ?: "-"
+}

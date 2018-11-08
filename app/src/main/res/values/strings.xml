@@ -2,4 +2,9 @@
   <string name="app_name">Punks</string>
 
   <string name="beer_search_error">No beer data exists.</string>
+
+  <!-- Beer Detail -->
+  <string name="abv">ABV</string>
+  <string name="ibu">IBU</string>
+  <string name="og">OG</string>
 </resources>

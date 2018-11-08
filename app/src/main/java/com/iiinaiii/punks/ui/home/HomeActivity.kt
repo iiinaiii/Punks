@@ -8,7 +8,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.iiinaiii.punks.R
 import com.iiinaiii.punks.dagger.inject
 import com.iiinaiii.punks.databinding.ActivityHomeBinding
-import com.iiinaiii.punks.domain.model.Beer
 import com.iiinaiii.punks.ui.InfiniteScrollListener
 import com.iiinaiii.punks.util.delegates.contentView
 import javax.inject.Inject
@@ -64,7 +63,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateBeers(beers: List<Beer>) {
+    private fun updateBeers(beers: List<BeerItemUiModel>) {
         beersAdapter.also {
             it.beers.addAll(beers)
             it.notifyDataSetChanged()

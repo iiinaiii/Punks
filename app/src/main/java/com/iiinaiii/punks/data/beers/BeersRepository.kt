@@ -17,10 +17,20 @@ class BeersRepository(private val remoteDataSource: BeersRemoteDataSource) {
         return result
     }
 
+    suspend fun getBeer(
+        id: Int
+    ): Result<BeerResponse> {
+        val beer = beerCache[id]
+        return if (beer != null) {
+            Result.Success(beer)
+        } else {
+            Result.Error(IllegalStateException("Beer $id not cached"))
+        }
+    }
+
     private fun cache(data: List<BeerResponse>) {
         data.associateTo(beerCache) { it.id to it }
     }
-
 
     companion object {
         @Volatile

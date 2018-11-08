@@ -9,10 +9,16 @@ data class Beer(
     val firstBrewed: String,
     val description: String,
     val imageUrl: String,
-    val abv: String
+    val abv: String,
+    val ibu: String,
+    val targetOg:String,
+    val targetFg:String
 )
 
+fun List<Beer>.toItemUiModels() = map { it.toItemUiModel() }
+
 fun Beer.toItemUiModel() = BeerItemUiModel(
+    id = id,
     name = name,
     imageUrl = imageUrl,
     firstBrewed = firstBrewed,

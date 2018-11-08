@@ -1,30 +1,34 @@
 package com.iiinaiii.punks.ui.home
 
-import android.content.Context
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.iiinaiii.punks.R
 import com.iiinaiii.punks.databinding.ItemBeerBinding
-import com.iiinaiii.punks.domain.model.Beer
-import com.iiinaiii.punks.domain.model.toItemUiModel
+import com.iiinaiii.punks.ui.detail.BeerDetailActivity
 
 class BeersAdapter(
-    context: Context,
-    val beers: MutableList<Beer> = mutableListOf()
+    private val host: Activity,
+    val beers: MutableList<BeerItemUiModel> = mutableListOf()
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val inflater = LayoutInflater.from(context)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(host)
         val binding: ItemBeerBinding = DataBindingUtil.inflate(inflater, R.layout.item_beer, parent, false)
-        return BeerViewHolder(binding)
+        return BeerViewHolder(binding) { data ->
+            openBeerDetail(data)
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as BeerViewHolder).bind(beers[position].toItemUiModel())
+        (holder as BeerViewHolder).bind(beers[position])
     }
 
     override fun getItemCount(): Int = beers.size
+
+    private fun openBeerDetail(data: BeerViewHolder.TransitionData) {
+        host.startActivity(BeerDetailActivity.createIntent(host, data.beer.id))
+    }
 }
