@@ -57,12 +57,14 @@
 
     <TextView
       android:id="@+id/top_abv_value"
-      android:layout_width="wrap_content"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
+      android:maxLines="1"
       android:text="@{uiModel.beer.abv}"
       android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
       app:layout_constraintBottom_toBottomOf="@+id/top_background"
+      app:layout_constraintEnd_toStartOf="@id/top_ibu_title"
       app:layout_constraintStart_toStartOf="@+id/top_abv_title"
       tools:text="7.2%" />
 
@@ -94,14 +96,16 @@
 
     <TextView
       android:id="@+id/top_ibu_value"
-      android:layout_width="wrap_content"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
+      android:maxLines="1"
       android:text="@{uiModel.beer.ibu}"
       android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
       app:layout_constraintBottom_toBottomOf="@+id/top_background"
+      app:layout_constraintEnd_toStartOf="@id/top_og_title"
       app:layout_constraintStart_toStartOf="@+id/top_ibu_title"
-      tools:text="250.0" />
+      tools:text="1250.0" />
 
     <TextView
       android:id="@+id/top_og_title"
@@ -121,7 +125,9 @@
       android:id="@+id/top_og_value"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginEnd="8dp"
       android:layout_marginBottom="8dp"
+      android:maxLines="1"
       android:text="@{uiModel.beer.targetOg}"
       android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
       app:layout_constraintBottom_toBottomOf="@id/top_background"
