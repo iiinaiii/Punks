@@ -17,7 +17,13 @@ data class BeerResponse(
     val target_fg: Float?,
     val target_og: Float?,
     val ebc: Float?,
-    val srm: Float?
+    val srm: Float?,
+    val volume: VolumeResponse,
+    val boil_volume: VolumeResponse,
+    val ph: Float?,
+    val attenuation_level: Float?,
+    val food_pairing: List<String>,
+    val brewers_tips: String
 )
 
 fun BeerResponse.toBeer() = Beer(
@@ -30,7 +36,15 @@ fun BeerResponse.toBeer() = Beer(
     abv = "${abv.toStringOrDefault()}%",
     ibu = ibu.toStringOrDefault(),
     targetOg = target_og.toStringOrDefault(),
-    targetFg = target_fg.toStringOrDefault()
+    targetFg = target_fg.toStringOrDefault(),
+    ebc = ebc.toStringOrDefault(),
+    srm = srm.toStringOrDefault(),
+    volume = volume.toVolumeText(),
+    boilVolume = boil_volume.toVolumeText(),
+    ph = ph.toStringOrDefault(),
+    attenuationLevel = attenuation_level.toStringOrDefault(),
+    foodPairing = food_pairing,
+    brewersTips = brewers_tips
 )
 
 private fun Float?.toStringOrDefault(): String {

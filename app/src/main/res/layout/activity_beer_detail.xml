@@ -15,148 +15,177 @@
 
   </data>
 
-  <androidx.constraintlayout.widget.ConstraintLayout
+  <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.BeerDetailActivity">
+    android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/start_guideline"
-      android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="vertical"
-      app:layout_constraintGuide_begin="16dp" />
+      tools:context=".ui.detail.BeerDetailActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/end_guideline"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      app:layout_constraintGuide_end="16dp" />
+      <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
 
-    <View
-      android:id="@+id/top_background"
-      android:layout_width="0dp"
-      android:layout_height="280dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
 
-    <ImageView
-      android:id="@+id/beer_package"
-      android:layout_width="200dp"
-      android:layout_height="0dp"
-      android:contentDescription="@null"
-      android:paddingTop="16dp"
-      app:imageUrl="@{uiModel.beer.imageUrl}"
-      app:layout_constraintBottom_toBottomOf="@+id/top_background"
-      app:layout_constraintStart_toStartOf="@id/top_background"
-      app:layout_constraintTop_toBottomOf="@id/top_background"
-      app:layout_constraintTop_toTopOf="@id/top_background"
-      tools:srcCompat="@tools:sample/avatars" />
+      <View
+        android:id="@+id/top_background"
+        android:layout_width="0dp"
+        android:layout_height="280dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-      android:id="@+id/top_abv_value"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
-      android:maxLines="1"
-      android:text="@{uiModel.beer.abv}"
-      android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-      app:layout_constraintBottom_toBottomOf="@+id/top_background"
-      app:layout_constraintEnd_toStartOf="@id/top_ibu_title"
-      app:layout_constraintStart_toStartOf="@+id/top_abv_title"
-      tools:text="7.2%" />
+      <ImageView
+        android:id="@+id/beer_package"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        android:paddingTop="16dp"
+        app:imageUrl="@{uiModel.beer.imageUrl}"
+        app:layout_constraintBottom_toBottomOf="@+id/top_background"
+        app:layout_constraintStart_toStartOf="@id/top_background"
+        app:layout_constraintTop_toBottomOf="@id/top_background"
+        app:layout_constraintTop_toTopOf="@id/top_background"
+        tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-      android:id="@+id/top_abv_title"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
-      android:text="@string/abv"
-      android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-      app:layout_constraintBottom_toTopOf="@+id/top_abv_value"
-      app:layout_constraintEnd_toStartOf="@+id/top_ibu_title"
-      app:layout_constraintHorizontal_bias="0"
-      app:layout_constraintHorizontal_chainStyle="packed"
-      app:layout_constraintStart_toEndOf="@+id/beer_package" />
+      <TextView
+        android:id="@+id/top_abv_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:maxLines="1"
+        android:text="@{uiModel.beer.abv}"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintBottom_toBottomOf="@+id/top_background"
+        app:layout_constraintEnd_toStartOf="@id/top_ibu_title"
+        app:layout_constraintStart_toStartOf="@+id/top_abv_title"
+        tools:text="7.2%" />
 
-    <TextView
-      android:id="@+id/top_ibu_title"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="20dp"
-      android:layout_marginBottom="8dp"
-      android:text="@string/ibu"
-      android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-      app:layout_constraintBottom_toTopOf="@+id/top_ibu_value"
-      app:layout_constraintEnd_toStartOf="@+id/top_og_title"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/top_abv_title" />
+      <TextView
+        android:id="@+id/top_abv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/abv"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintBottom_toTopOf="@+id/top_abv_value"
+        app:layout_constraintEnd_toStartOf="@+id/top_ibu_title"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/beer_package" />
 
-    <TextView
-      android:id="@+id/top_ibu_value"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
-      android:maxLines="1"
-      android:text="@{uiModel.beer.ibu}"
-      android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-      app:layout_constraintBottom_toBottomOf="@+id/top_background"
-      app:layout_constraintEnd_toStartOf="@id/top_og_title"
-      app:layout_constraintStart_toStartOf="@+id/top_ibu_title"
-      tools:text="1250.0" />
+      <TextView
+        android:id="@+id/top_ibu_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/ibu"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintBottom_toTopOf="@+id/top_ibu_value"
+        app:layout_constraintEnd_toStartOf="@+id/top_og_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/top_abv_title" />
 
-    <TextView
-      android:id="@+id/top_og_title"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="20dp"
-      android:layout_marginEnd="8dp"
-      android:layout_marginBottom="8dp"
-      android:text="@string/og"
-      android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-      app:layout_constraintBottom_toTopOf="@+id/top_og_value"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/top_ibu_title" />
+      <TextView
+        android:id="@+id/top_ibu_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:maxLines="1"
+        android:text="@{uiModel.beer.ibu}"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintBottom_toBottomOf="@+id/top_background"
+        app:layout_constraintEnd_toStartOf="@id/top_og_title"
+        app:layout_constraintStart_toStartOf="@+id/top_ibu_title"
+        tools:text="1250.0" />
 
-    <TextView
-      android:id="@+id/top_og_value"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      android:layout_marginBottom="8dp"
-      android:maxLines="1"
-      android:text="@{uiModel.beer.targetOg}"
-      android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-      app:layout_constraintBottom_toBottomOf="@id/top_background"
-      app:layout_constraintStart_toStartOf="@+id/top_og_title"
-      tools:text="1065.0" />
+      <TextView
+        android:id="@+id/top_og_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/og"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintBottom_toTopOf="@+id/top_og_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/top_ibu_title" />
 
-    <TextView
-      android:id="@+id/beer_name"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:text="@{uiModel.beer.name}"
-      android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
-      android:textColor="@android:color/black"
-      app:layout_constraintEnd_toEndOf="@id/end_guideline"
-      app:layout_constraintStart_toStartOf="@id/start_guideline"
-      app:layout_constraintTop_toBottomOf="@id/top_background"
-      tools:text="JACK HAMMER" />
+      <TextView
+        android:id="@+id/top_og_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:maxLines="1"
+        android:text="@{uiModel.beer.targetOg}"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintBottom_toBottomOf="@id/top_background"
+        app:layout_constraintStart_toStartOf="@+id/top_og_title"
+        tools:text="1065.0" />
 
-    <TextView
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:text="@{uiModel.beer.tagline}"
-      android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-      app:layout_constraintEnd_toEndOf="@id/end_guideline"
-      app:layout_constraintStart_toStartOf="@id/start_guideline"
-      app:layout_constraintTop_toBottomOf="@id/beer_name"
-      tools:text="RUTHLESS INDIA PALE ALE. HOPPY. BITTER. HOPPY." />
+      <TextView
+        android:id="@+id/first_brew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@{uiModel.beer.firstBrewed}"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        app:layout_constraintBottom_toTopOf="@+id/top_abv_title"
+        app:layout_constraintStart_toEndOf="@+id/beer_package"
+        tools:text="SEPTEMBER 2010" />
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+      <TextView
+        android:id="@+id/beer_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@{uiModel.beer.name}"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/top_background"
+        tools:text="JACK HAMMER" />
+
+      <TextView
+        android:id="@+id/tagline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@{uiModel.beer.tagline}"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/beer_name"
+        tools:text="RUTHLESS INDIA PALE ALE. HOPPY. BITTER. HOPPY." />
+
+      <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detail_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="true"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/tagline" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </ScrollView>
 </layout>

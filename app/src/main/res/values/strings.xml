@@ -7,4 +7,16 @@
   <string name="abv">ABV</string>
   <string name="ibu">IBU</string>
   <string name="og">OG</string>
+  <string name="volume">VOLUME</string>
+  <string name="target_fg">Target FG</string>
+  <string name="target_og">Target OG</string>
+  <string name="ebc">EBC</string>
+  <string name="srm">SRM</string>
+  <string name="ph">PH</string>
+  <string name="attenuation_level">ATTENUATION LEVEL</string>
+  <string name="boil_volume">BOIL VOLUME</string>
+  <string name="header_description">THIS BEER IS</string>
+  <string name="header_basics">BASICS</string>
+  <string name="header_food_pairing">FOOD PAIRING</string>
+  <string name="header_brewers_tips">BREWER\'S TIPS</string>
 </resources>
