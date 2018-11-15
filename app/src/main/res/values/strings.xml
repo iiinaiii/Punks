@@ -19,4 +19,8 @@
   <string name="header_basics">BASICS</string>
   <string name="header_food_pairing">FOOD PAIRING</string>
   <string name="header_brewers_tips">BREWER\'S TIPS</string>
+
+  <!-- Transition name -->
+  <string name="transition_beer_image">beer_image</string>
+  <string name="transition_beer_name">beer_name</string>
 </resources>

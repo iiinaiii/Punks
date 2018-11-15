@@ -16,6 +16,7 @@
       android:layout_width="40dp"
       android:layout_height="40dp"
       android:contentDescription="@null"
+      android:transitionName="@string/transition_beer_image"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -29,6 +30,7 @@
       android:ellipsize="end"
       android:maxLines="1"
       android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+      android:transitionName="@string/transition_beer_name"
       app:layout_constraintBottom_toTopOf="@+id/first_brew"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toEndOf="@+id/beer_image"

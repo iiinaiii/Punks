@@ -1,6 +1,7 @@
 package com.iiinaiii.punks.ui.home
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -29,6 +30,7 @@ class BeersAdapter(
     override fun getItemCount(): Int = beers.size
 
     private fun openBeerDetail(data: BeerViewHolder.TransitionData) {
-        host.startActivity(BeerDetailActivity.createIntent(host, data.beer.id))
+        val activityOptions = ActivityOptions.makeSceneTransitionAnimation(host, *data.sharedElements)
+        host.startActivity(BeerDetailActivity.createIntent(host, data.beer.id), activityOptions.toBundle())
     }
 }

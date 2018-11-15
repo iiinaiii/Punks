@@ -1,7 +1,9 @@
 package com.iiinaiii.punks.ui.home
 
+import android.util.Pair
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.iiinaiii.punks.R
 import com.iiinaiii.punks.databinding.ItemBeerBinding
 import com.iiinaiii.punks.util.glide.GlideApp
 
@@ -35,7 +37,10 @@ class BeerViewHolder(
 
     private fun getSharedElementsForTransition(): Array<Pair<View, String>> {
         val resources = binding.root.resources
-        return arrayOf()
+        return arrayOf(
+            Pair(binding.beerImage as View, resources.getString(R.string.transition_beer_image)),
+            Pair(binding.beerName as View, resources.getString(R.string.transition_beer_name))
+        )
     }
 
     data class TransitionData(
