@@ -19,7 +19,6 @@ class BeersRemoteDataSource @Inject constructor(private val service: BeersSearch
     private suspend fun requestSearch(
         page: Int
     ): Result<List<BeerResponse>> {
-        Result
         val response = service.search(page).await()
         if (response.isSuccessful) {
             val body = response.body()
