@@ -70,7 +70,7 @@ class BeerDetailActivity : AppCompatActivity() {
             add(ValueItem(getString(R.string.boil_volume), beer.boilVolume))
             add(ValueItem(getString(R.string.abv), beer.abv))
             add(ValueItem(getString(R.string.target_fg), beer.targetFg))
-            add(ValueItem(getString(R.string.target_fg), beer.targetFg))
+            add(ValueItem(getString(R.string.target_og), beer.targetOg))
             add(ValueItem(getString(R.string.ebc), beer.ebc))
             add(ValueItem(getString(R.string.srm), beer.srm))
             add(ValueItem(getString(R.string.ph), beer.ph))
