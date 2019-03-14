@@ -1,5 +1,6 @@
 package com.iiinaiii.punks.data.api
 
+import android.net.Uri
 import com.iiinaiii.punks.data.beers.model.BeerResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
@@ -14,6 +15,8 @@ interface BeersSearchService {
     ): Deferred<Response<List<BeerResponse>>>
 
     companion object {
-        const val ENDPOINT = "https://api.punkapi.com/v2/"
+        val ENDPOINT = Uri.Builder().scheme("https")
+            .authority("api.punkapi.com")
+            .appendEncodedPath("/v2/").build().toString()
     }
 }
